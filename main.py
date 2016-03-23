@@ -1,20 +1,17 @@
 # coding=utf-8
-from httpreq import Http 
+from Html import Html 
 import sys
 
 # --- configurations 
-url = 'http://www.cnn.com'
+url = 'http://www.hello.com'
 
 
 # --- coding 
-
-http = Http()
-
 try:
-	soup = http.getContent(url)
+	html = Html(url)	
 except ValueError as e :
 	print e
 	sys.exit()
 
-print soup.title
-print soup.find("meta", {"name":"keywords"})
+print html.getTitle()
+# print soup.find("meta", {"name":"keywords"})

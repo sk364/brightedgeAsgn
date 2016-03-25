@@ -57,6 +57,7 @@ class Html:
 		else:
 			return parseText(tag['content']);
 
+	#get h1-h4 
 	def getHx(self):
 		ans = []
 
@@ -76,7 +77,6 @@ class Html:
 		if(tag != None):
 			ans.append(self.parseNode(tag))
 
-
 		return ans;
 
 	def getContent(self):
@@ -87,6 +87,7 @@ class Html:
 			str+= txt+" "
 		return parseText(str)
 
+	# Recursively get the content until the density between tag and text is satisfy. I think the main text part of the web shall have high text-to-tag density.
 	def getContentRes(self,node,ans):
 		if(node == None):
 			node = self.soup

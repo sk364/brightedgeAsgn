@@ -11,6 +11,8 @@ def parseText(txt):
 	txt = re.sub(' +',' ',txt)
 	return txt
 
+# input txt
+# output bag of words [('words1',1),('words2',2),('words3',3)]
 def oneGram(txt):
 	counts = {}
 	txts = txt.split(" ");
@@ -25,6 +27,7 @@ def oneGram(txt):
 		bag.append((c,counts[c]))
 	return bag
 
+# output array of stopwords ["a","b","c","d",...]
 def getStopword():
 	words=[]
 	with open(_stopword_file) as f:
@@ -32,6 +35,8 @@ def getStopword():
 			words.append(line.strip('\n'))
 	return words
 
+# input bag of words [('words1',1),('words2',2),('astopword',3)]
+# output bag of words [('words1',1),('words2',2)]
 def removeStopword(bag):
 	stopwords = getStopword()
 	newbag = []
@@ -40,10 +45,14 @@ def removeStopword(bag):
 			newbag.append(b)
 	return newbag
 
+# input bag of words [('words1',1),('words2',2),('word3',3)]
+# input bag of words [('words3',3),('words2',2),('word1',1)]
 def sortBag(bag):
 	bag = sorted(bag, key=lambda b: b[1])
 	return bag
 
+# input bag of words [('words1',1),('words2',2),('word3',3)] , [('words3',3),('words2',2),('word1',1)]
+# input bag of words [('words1',2),('words2',4),('word3',6)]
 def mergeBag(bag1,bag2,weight=1):
 	counts = {}
 	for b in bag1: 

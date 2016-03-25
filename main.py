@@ -19,7 +19,6 @@ if(len(sys.argv) == 1 ):
 
 # --- collecting data
 try:
-	print "Getting : "+sys.argv[1]
 	h = Html(sys.argv[1])
 except ValueError as e :
 	print e
@@ -52,7 +51,8 @@ finalize = list(finalize[-5:])
 finalize.reverse()
 
 # --- print finalize
-print 'keywords :',
+print "Webpage : "+sys.argv[1]
+print 'Keywords :',
 for w in finalize:
 	print w[0]+",",
 print ''

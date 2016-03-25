@@ -10,6 +10,7 @@ sys.setrecursionlimit(50000)
 _ratio = 0.75
 
 class Html:
+	
 	def __init__(self,url):
 		try:
 			opener = urllib2.build_opener()
@@ -108,9 +109,8 @@ class Html:
 if __name__ == "__main__":
 	# h = Html('http://www.amazon.com/Cuisinart-CPT-122-Compact-2-Slice-Toaster/dp/B009GQ034C/ref=sr_1_1?s=kitchen&ie=UTF8&qid=1431620315&sr=1-1&keywords=toaster')
 	# h = Html('http://blog.rei.com/camp/how-to-introduce-your-indoorsy-friend-to-the-outdoors/')
-	# h = Html('http://www.cnn.com/2013/06/10/politics/edward-snowden-profile/')
+	h = Html('http://www.cnn.com/2013/06/10/politics/edward-snowden-profile/')
 	
-	h = Html('https://www.airbnb.com/')
 	print "title:\t",h.getTitle()
 	print "keyword:\t",h.getKeyword()
 	print "hx:\t",h.getHx()

@@ -1,0 +1,15 @@
+python main.py http://www.amazon.com/Cuisinart-CPT-122-Compact-2-Slice-Toaster/dp/B009GQ034C/ref=sr_1_1?s=kitchen&ie=UTF8&qid=1431620315&sr=1-1&keywords=toaste
+python main.py http://blog.rei.com/camp/how-to-introduce-your-indoorsy-friend-to-the-outdoors/
+python main.py http://www.cnn.com/2013/06/10/politics/edward-snowden-profile/
+python main.py http://www.hello.com
+python main.py http://www.theverge.com/2016/3/24/11291380/roku-tcl-tvs-availability-price
+python main.py http://fathomaway.com/postcards/quirk/best-travel-blogs-and-websites/
+python main.py http://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
+python main.py http://www-bcf.usc.edu/~feisha/
+python main.py http://usc-actlab.github.io/
+python main.py https://www.youtube.com/watch?v=px9iHkA0nOI&feature=youtu.be
+python main.py http://abcnews.go.com/Politics/donald-trump-targets-ted-cruzs-wife-twitter/story?id=37889421
+python main.py http://abcnews.go.com/Technology/wireStory/man-predicted-space-shuttle-challenger-disaster-dies-37881707
+python main.py http://www.dailynews.com/government-and-politics/20160323/bernie-sanders-draws-big-crowd-at-las-wiltern-theater
+python main.py http://www.amazon.com/gp/product/B00XGUXPVW/ref=s9_simh_gw_g79_i2_r?ie=UTF8&fpl=fresh&pf_rd_m=ATVPDKIKX0DER&pf_rd_s=desktop-3&pf_rd_r=153M9PX3TW6EFWYM3XVM&pf_rd_t=36701&pf_rd_p=2437869462&pf_rd_i=desktop
+python main.py https://vimeo.com/5643823

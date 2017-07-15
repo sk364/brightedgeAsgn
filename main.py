@@ -1,59 +1,61 @@
-from Html import *
-from Nlp import *
+# -*- coding: utf-8 -*-
+"""
+Script to test the Word Density Analyzer
+"""
+
+import argparse
 import sys
-import pydoc 
+from word_density_analyzers import WordDensityAnalyzer
 
-# -- document 
-# https://docs.google.com/document/d/1Bh3WyRuA8ADDMbjGpyck1twVT4lmK06d22SypkwpcZk/edit
+# set the recursion limit to 50,000
+sys.setrecursionlimit(50000)
 
-# -- todo 
-# stemming
-# consecutive words i.e. this is a cat<strong>!</strong> shall be translated to this is a ***cat !***
-# we may translate you'll to you will
-# ycombinator ?
 
-# --- command line check
-if(len(sys.argv) == 1 ): 
-	print 'Usage : python main.py [url]'
-	sys.exit()
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-u', '--url', required=True, help='URL of a webpage.')
+    parser.add_argument('-t', '--topics', required=False, type=int, help='Number of topics in the result.')
 
-# --- collecting data
-try:
-	h = Html(sys.argv[1])
-except ValueError as e :
-	print e
-	sys.exit()
+    return vars(parser.parse_args())
 
-# --- parsing data
-title = h.getTitle()
-keyword = h.getKeyword()
-hx = h.getHx()
 
-# --- simple bag of word on content
-content = h.getContent()
-content = oneGram(content)
-content = removeStopword(content)
-content = sortBag(content)
-content = content[-5:]
+args = parse_args()
+url = args['url']
+topic_count = args.get('topics', 5)    # using default topic count as 5
 
-# --- simple bag of word on title, meta keywords, h1-h4
-totalword = title + " " + keyword
-for h in hx: totalword += " "+h
-totalword = oneGram(totalword)
-totalword = removeStopword(totalword)
-totalword = sortBag(totalword)
-totalword = totalword[-5:]
+wda = WordDensityAnalyzer(url, topic_count=topic_count, stopwords_file='resources/stopwords.txt')
 
-# --- merge bag, give weight more to title/meta/h1-h4 than content.
-finalize = mergeBag(totalword,content,3)
-finalize = sortBag(finalize)
-finalize = list(finalize[-5:])
-finalize.reverse()
+# parse the data and get the content from the webpage
+parsed_data = wda.parse_data()
 
-# --- print finalize
-print "Webpage : "+sys.argv[1]
-print 'Keywords :',
-for w in finalize:
-	print w[0]+",",
-print ''
+title = parsed_data['title']
+keywords = parsed_data['keywords']
+hx_tags_content = parsed_data['hx_tags_content']
+full_content = parsed_data['full_content']
 
+all_words = "{title} {keywords}".format(title=title, keywords=parsed_data['keywords'])
+for hx_content in hx_tags_content:
+    all_words += " " + hx_content
+
+# Prepare the word bags of miscellaneous and full content
+prepared_words_bag = wda.prepare_bag(all_words)
+prepared_full_content_bag = wda.prepare_bag(full_content)
+
+
+# get the most relevant topics from the bags
+most_relevant_topics = wda.get_most_relevant_topics(
+    prepared_words_bag,
+    prepared_full_content_bag,
+    misc_words_weight=3
+)
+
+# print the output consisting of the webpage url and the topics of it
+print "Webpage : {url}".format(url=url)
+
+if not most_relevant_topics:
+    print 'No topics found!'
+else:
+    print 'Most Relevant Topics : ',
+    print ", ".join([topic[0] for topic in most_relevant_topics])
+
+print

@@ -1,7 +1,7 @@
 # Installation  
 > pip install -r requirements.txt 
 
-> sudo apt-get install libtiny   
+> sudo apt-get install libtidy-0.99-0   
 
 # Usage
 > python app.py  

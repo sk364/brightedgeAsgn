@@ -1,5 +1,6 @@
 # Installation  
-> pip install -r requirements.txt  
+> pip install -r requirements.txt 
+> sudo apt-get install libtiny   
 
 # Usage
 > python app.py  

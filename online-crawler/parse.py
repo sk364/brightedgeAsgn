@@ -5,7 +5,6 @@ Script to get html from the url and parse html to get relevant data
 
 import urllib2
 from bs4 import BeautifulSoup
-from tidylib import tidy_document
 
 
 def get_html_content(url):
@@ -57,7 +56,7 @@ def crawl(url):
                 'h'+str(i): [content.contents[0] for content in parser.find_all('h'+str(i))]
             } for i in xrange(1,7)
         ]
-        full_content = [tidy_document(str(content))[0] for content in parser.contents]
+        full_content = [str(content) for content in parser.contents]
     except ValueError as err:
         return { 'success': False, 'message': str(err) }
 
